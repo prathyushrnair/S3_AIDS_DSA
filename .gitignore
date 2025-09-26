@@ -1,1 +1,4 @@
 *.o
+*.exe
+mergesort deepseek.c
+tesitng bullshit.c
