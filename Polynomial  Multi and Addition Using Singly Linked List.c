@@ -68,4 +68,49 @@ struct node *multiplypoly(struct node *head1,struct node *head2)
     combineliketerms(result);
     return result;
 }
+void printPoly(struct node *head) {
+    if (head == NULL) {
+        printf("Polynomial is empty.\n");
+        return;
+    }
+
+    struct node *temp = head;
+    while (temp != NULL) {
+        printf("%dx^%d", temp->coeff, temp->expo);
+        temp = temp->link;
+        if (temp != NULL) {
+            printf(" + ");
+        }
+    }
+    printf("\n");
+}
+int main() {
+    struct node *poly1 = NULL;
+    struct node *poly2 = NULL;
+    struct node *poly_result = NULL;
+
+    // Example Polynomial 1: 5x^2 + 3x^1 + 2x^0
+    addterm(&poly1, 5, 2);
+    addterm(&poly1, 3, 1);
+    addterm(&poly1, 2, 0);
+
+    printf("Polynomial 1: ");
+    printPoly(poly1);
+
+    // Example Polynomial 2: 2x^1 + 4x^0
+    addterm(&poly2, 2, 1);
+    addterm(&poly2, 4, 0);
+
+    printf("Polynomial 2: ");
+    printPoly(poly2);
+
+    // Multiply the polynomials
+    poly_result = multiplypoly(poly1, poly2);
+
+    printf("Result of multiplication: ");
+    printPoly(poly_result);
+
+    return 0;
+}
+
 
