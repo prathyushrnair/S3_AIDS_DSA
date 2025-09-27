@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX 100
-int arr[10] = {64, 34, 25, 12, 22, 11, 90};
+int arr[] = {64, 34, 25, 12, 22, 11, 90};
 void mergesort(int array[],int low,int high)
 {
     if(low>=high)
@@ -9,6 +9,8 @@ void mergesort(int array[],int low,int high)
         return;
     }
     int mid= (low+high)/2;
+    mergesort(array,low,mid);
+    mergesort(array ,mid+1,high);
     //slicing left and right parts for split
     int left_size=mid-low+1;
     int right_size=high - mid;
@@ -20,7 +22,7 @@ void mergesort(int array[],int low,int high)
     {
         left[i]=array[low+i];
     }
-    printf("Left 'SUB array' is \n");
+    printf("\n Left 'SUB array' is \n");
     for(int i=0;i<left_size;i++)
     {
         printf("%d  ",left[i]);
@@ -31,13 +33,12 @@ void mergesort(int array[],int low,int high)
     {
         right[i]=array[mid+i+1];
     }
-    printf("Right 'SUB array' is \n");
+    printf("\n Right 'SUB array' is \n");
     for(int i=0;i<right_size;i++)
     {
         printf("\t %d \t",right[i]);
     }
-    mergesort(array,low,mid);
-    mergesort(array ,mid+1,high);
+
     int i=0,j=0,k=low;
     while (i<left_size && j<right_size)
     {
@@ -59,7 +60,7 @@ void mergesort(int array[],int low,int high)
         array[k++]=right[j++];
     }
     //printing the merged result
-    printf("Merged result: ");
+    printf("\nMerged result: \n");
     for(int i = low; i <= high; i++) {
         printf("\t%d\t", array[i]);
     }
@@ -86,3 +87,4 @@ void main()
     }
     printf("\n");
 }
+//reference https://www.w3schools.com/dsa/dsa_algo_mergesort.php
